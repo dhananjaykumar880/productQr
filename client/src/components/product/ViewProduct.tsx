@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { BE_BASE_URL } from '../../constant'
 import { Product } from '../../interfaces/product'
 import { useGetProductByIdQuery } from '../../redux/product/productApi'
@@ -9,7 +9,7 @@ export default function ViewProduct() {
     const productId = Number(params.productId)
     const { data, isSuccess } = useGetProductByIdQuery(productId, { skip: !Boolean(productId)})
     return <>
-        <h3>Product details</h3>
+        <h3><Link to="/">Go Back</Link>   Product details</h3>
         <table>
             <tbody>
                 {isSuccess && Object.keys(data).filter(key => !['createdAt', 'updatedAt'].includes(key)).map((key, index) => <tr key={index}>
